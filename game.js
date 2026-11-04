@@ -117,7 +117,6 @@ const LANDING_SCRIPT=[
 {until:8.6,text:'Alpha : 선생님과 학생들이 체육관에 대피해 있다.'},
 {until:12.4,text:'Alpha : 학교의 좀비를 모두 처치하고, 지하실 전원 스위치를 올려라.'},
 {until:16,text:'Alpha : 전원을 복구한 뒤 체육관에 진입해 생존자들을 구출해라.'},
-{until:18.8,text:'Alpha : 착륙 완료. 왼쪽 문으로 하차해라.'},
 {until:21,text:'Agent 28 : 알겠다'}
 ];
 const LANDING_DURATION=21;
