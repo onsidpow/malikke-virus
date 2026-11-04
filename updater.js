@@ -1,6 +1,6 @@
 'use strict';
 (() => {
-  const base = new URL('./', location.href);
+  const base = new URL('./', document.baseURI || location.href);
   const files = ['index.html', 'game.js', 'style.css', 'updater.js'];
   let baseline = null, checking = false, pending = false, reloading = false, lastCheck = 0;
   const banner = document.createElement('div');

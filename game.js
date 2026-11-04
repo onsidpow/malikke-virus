@@ -1,6 +1,7 @@
 'use strict';
 // Malikke Virus: a self-contained WebGL school campaign.
 const $=id=>document.getElementById(id),canvas=$('scene');
+const MANAGEMENT_MODE=/\/management\/?$/.test(location.pathname);
 const gl=canvas.getContext('webgl',{antialias:true,alpha:false,powerPreference:'high-performance'});
 let state='menu',floor=3,p={x:7,z:6,a:Math.PI/2,pitch:0,hp:100},ammo=18,kills=0,elapsed=0,reloadLeft=0,cooldown=0,flash=0,hurt=0,hit=0,noticeTime=0,walk=0,keys={},firing=false,joy={x:0,y:0},soundOn=false,audio,sens=.0025,best=0,navClock=0,nearAction=null,powerOn=false,powerLevel=0,powerSurge=0,floors={},interactables=[],particles=[],last=performance.now();
 try{best=Number(localStorage.getItem('malikke-school-rescue-v1-best')||0)}catch{}
@@ -103,7 +104,7 @@ function refreshCampaign(){$('campaignStatus').textContent=best?'1구역 클리�
 function start(){stageCleared=false;makeWorld();floor=3;p={x:22,z:22.5,a:Math.PI,pitch:0,hp:100};ammo=18;kills=0;elapsed=0;reloadLeft=0;cooldown=0;flash=0;hurt=0;hit=0;navClock=0;powerOn=false;powerLevel=0;powerSurge=0;particles=[];nearAction=null;shotNoise=null;firing=false;keys={};resetJoystick();walk=0;stairRun=null;missionShown=false;missionStage=-1;missionTimer=0;$('missionBanner').classList.add('hidden');for(let id of ['menu','result','pauseMenu','guide','story','campaign','stairs','schoolMap','newsCutscene','nextChapter'])$(id).classList.add('hidden');$('hud').classList.add('hidden');state='intro';introTime=0;setLandingCaption(LANDING_SCRIPT[0].text);$('landingIntro').classList.remove('hidden');uploadStatic();updateHUD();if(audio)audio.resume()}
 function goHome(){state='menu';firing=false;keys={};resetJoystick();document.exitPointerLock?.();for(let id of ['hud','result','pauseMenu','stairs','schoolMap','campaign','story','guide','landingIntro','missionBanner','newsCutscene','nextChapter'])$(id).classList.add('hidden');$('menu').classList.remove('hidden');refreshCampaign()}
 function openCampaign(){goHome();$('campaign').classList.remove('hidden')}
-function pause(){if(state!=='play')return;state='pause';firing=false;keys={};resetJoystick();document.exitPointerLock?.();$('pauseMenu').classList.remove('hidden')}
+function pause(){if(state!=='play')return;state='pause';$('skipStage').classList.toggle('hidden',!MANAGEMENT_MODE);firing=false;keys={};resetJoystick();document.exitPointerLock?.();$('pauseMenu').classList.remove('hidden')}
 function resume(){state='play';$('pauseMenu').classList.add('hidden');$('stairs').classList.add('hidden');$('schoolMap').classList.add('hidden')}
 const LANDING_SCRIPT=[
 {until:5.2,text:'Alpha : 감염되면 사람들이 좀비로 변하는 바이러스가 다비 고등학교에 퍼졌어.'},
@@ -172,9 +173,11 @@ const NEWS_SCRIPT=[
  {until:19,kicker:'추가 발생 신고',headline:'학교 밖에서도\n유사 증상 신고',lower:'인근 지역서도 유사 신고 잇따라…확산 경로 조사',detail:'도심 북부·인근 지역 신고 접수\n구조대 수색 범위 확대',location:'감염 의심 신고 접수 지역',label:'발생 지역',caption:'그러나 인근 지역에서도 같은 증상의 신고가 잇따르고 있습니다. 당국은 바이러스의 정체와 확산 경로를 조사하고 있습니다.'},
  {until:25,kicker:'주민 긴급 안내',headline:'외출 자제\n안전한 실내 대기',lower:'당국 “감염 의심자 접근 말고 안전한 곳에서 대기”',detail:'감염 의심자와 접촉 금지\n공식 대피 안내에 따라 이동',location:'추가 수색 예정 지역',label:'긴급 안내',caption:'주민 여러분께서는 불필요한 외출을 삼가고 감염 의심자와의 접촉을 피해 주십시오. 추가 소식은 들어오는 대로 전해 드리겠습니다.'}
 ];
-function startNews(){if(!stageCleared||!['result','next'].includes(state))return;state='news';newsTime=0;newsCue=-1;firing=false;keys={};resetJoystick();document.exitPointerLock?.();for(let id of ['hud','result','menu','nextChapter','missionBanner'])$(id).classList.add('hidden');$('newsCutscene').classList.remove('hidden');tone(660,.15,.04,'sine');updateNews(0)}
+function startNews(){if(!stageCleared||!['result','next'].includes(state))return;state='news';newsTime=0;newsCue=-1;firing=false;keys={};resetJoystick();document.exitPointerLock?.();for(let id of ['hud','result','menu','nextChapter','missionBanner','pauseMenu'])$(id).classList.add('hidden');$('newsCutscene').classList.remove('hidden');tone(660,.15,.04,'sine');updateNews(0)}
 function updateNews(dt){if(state!=='news'||document.hidden)return;newsTime+=dt;let index=NEWS_SCRIPT.findIndex(c=>newsTime<c.until);if(index<0){finishNews();return}if(index!==newsCue){newsCue=index;let cue=NEWS_SCRIPT[index];$('newsCutscene').setAttribute('data-scene',String(index));for(let [id,field]of [['newsKicker','kicker'],['newsHeadline','headline'],['newsLowerHeadline','lower'],['newsDetail','detail'],['newsLocation','location'],['newsFrameLabel','label'],['newsCaption','caption']])$(id).textContent=cue[field]}$('newsProgress').style.width=Math.min(100,newsTime/25*100)+'%'}
 function finishNews(){if(state!=='news')return;state='next';$('newsCutscene').classList.add('hidden');$('nextChapter').classList.remove('hidden');firing=false;keys={};resetJoystick()}
+function skipCurrentStage(){if(!MANAGEMENT_MODE||state!=='pause')return;stageCleared=true;state='result';startNews()}
+$('skipStage').onclick=skipCurrentStage;
 $('nextStage').onclick=startNews;$('skipNews').onclick=finishNews;$('replayNews').onclick=startNews;$('nextHome').onclick=goHome;$('nextCampaign').onclick=openCampaign;
 
 makeWorld();uploadStatic();refreshCampaign();function loop(now){let remaining=Math.min(.18,(now-last)/1000);last=now;while(remaining>0){let dt=Math.min(.025,remaining);updateLanding(dt);updateNews(dt);update(dt);remaining-=dt}draw();requestAnimationFrame(loop)}requestAnimationFrame(loop);
