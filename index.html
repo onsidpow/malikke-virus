@@ -47,7 +47,22 @@
   <div class="news-ticker"><b>실시간</b><div><span>당국, 불필요한 외출 자제 당부　｜　감염 의심자 접근 금지　｜　구조대, 인근 지역 수색 확대　｜　안전한 실내에서 후속 안내 대기　｜　</span></div></div>
   <div class="news-progress"><i id="newsProgress"></i></div>
 </section>
-<section id="nextChapter" class="dialog hidden"><div class="card next-chapter-card"><span class="eyebrow">CHAPTER 02 · 확산</span><h2>학교 밖에서도<br>사건은 계속된다.</h2><p>다비 고등학교의 생존자들은 구조됐지만,<br>도시 곳곳에서 같은 증상의 신고가 접수되고 있다.</p><div class="next-chapter-status">다음 스테이지는 준비 중입니다.</div><button id="nextCampaign" class="primary">스테이지 선택</button><button id="replayNews" class="textbtn">긴급 속보 다시 보기</button><button id="nextHome" class="textbtn">타이틀로 돌아가기</button></div></section>
+<section id="nextChapter" class="dialog hidden"><div class="card next-chapter-card"><span class="eyebrow">CHAPTER 02 · 확산</span><h2 id="nextChapterTitle">다비 종합병원</h2><div id="nextChapterStatus" class="next-chapter-status">2스테이지 준비 중</div><button id="nextCampaign" class="primary">스테이지 선택</button><button id="replayNews" class="textbtn">긴급 속보 다시 보기</button><button id="nextHome" class="textbtn">타이틀로 돌아가기</button></div></section>
+
+
+<section id="rideHud" class="ride-hud hidden" aria-label="병원 이동 구간">
+  <div class="ride-top"><div class="ride-mission"><span>이동 · 다비 도심</span><strong>다비 종합병원으로 이동하라</strong></div><div class="ride-top-actions"><button id="rideReset" aria-label="도로로 복귀">↺</button><button id="ridePauseButton" aria-label="주행 일시정지">Ⅱ</button></div></div>
+  <div class="ride-navigation"><b id="rideDirection">↑</b><div><strong>다비 종합병원</strong><span id="rideDistance">1400 m</span></div></div>
+  <div class="ride-route"><i id="rideRouteProgress"></i></div>
+  <div id="rideDialogue" class="ride-dialogue"><span>Agent 28</span> : 감염을 최소화하려면 병원을 지켜야 해.</div>
+  <div id="rideRoadWarning" class="ride-road-warning hidden">차도로 복귀하세요</div>
+  <div class="ride-speed"><b id="rideSpeed">0</b><span>km/h</span><small>WASD · 방향키</small></div>
+  <div class="ride-steering"><button id="rideLeft" aria-label="왼쪽 조향">◀</button><button id="rideRight" aria-label="오른쪽 조향">▶</button></div>
+  <div class="ride-pedals"><button id="rideBrake">브레이크<span>S / ↓</span></button><button id="rideGas">가속<span>W / ↑</span></button></div>
+  <div id="rideImpact"></div><div id="rideSpeedLines"></div>
+</section>
+<section id="rideArrival" class="ride-arrival hidden"><span>STAGE 02</span><h2>다비 종합병원</h2><p>도착</p></section>
+<section id="ridePause" class="dialog hidden"><div class="card compact"><span class="eyebrow">다비 종합병원으로 이동 중</span><h2>주행 일시정지</h2><button id="rideResume" class="primary">계속 주행</button><button id="rideResetPause" class="textbtn">도로로 복귀</button><button id="rideHome" class="textbtn">타이틀로 돌아가기</button></div></section>
 
 <script>var updateLoader=document.createElement("script");updateLoader.src="updater.js?_boot="+Date.now();document.body.appendChild(updateLoader);</script></body></html>
 
