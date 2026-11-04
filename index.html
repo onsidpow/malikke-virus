@@ -54,7 +54,7 @@
   <div class="ride-top"><div class="ride-mission"><span>STAGE 02 · 다비 도심</span><strong>다비 종합병원으로 이동하라</strong></div><div class="ride-top-actions"><button id="rideReset" aria-label="도로로 복귀">↺</button><button id="ridePauseButton" aria-label="주행 일시정지">Ⅱ</button></div></div>
   <div class="ride-navigation"><b id="rideDirection">↑</b><div><strong>다비 종합병원</strong><span id="rideDistance">1400 m</span></div></div>
   <div class="ride-route"><i id="rideRouteProgress"></i></div>
-  <div id="rideDialogue" class="ride-dialogue"><span>Agent 28</span> : 감염을 최소화하려면 병원을 지켜야 해.</div>
+  <div id="rideDialogue" class="ride-dialogue"><span id="rideSpeaker" class="speaker-alpha">Alpha</span><span id="rideLine"> : 최대한 빠르게 이동해라.</span></div>
   <div id="rideRoadWarning" class="ride-road-warning hidden">차도로 복귀하세요</div>
   <div class="ride-speed"><b id="rideSpeed">0</b><span>km/h</span><small>WASD · 방향키</small></div>
   <div class="ride-steering"><button id="rideLeft" aria-label="왼쪽 조향">◀</button><button id="rideRight" aria-label="오른쪽 조향">▶</button></div>
@@ -69,5 +69,6 @@
 <section id="hospitalPause" class="dialog hidden"><div class="card compact"><span class="eyebrow">STAGE 02 · 다비 종합병원</span><h2>일시정지</h2><label class="pause-sensitivity">조준 감도<input id="hospitalSensitivity" type="range" min="1" max="10" value="5"></label><button id="hospitalResume" class="primary">계속하기</button><button id="hospitalSkipStage" class="textbtn hidden">스테이지 건너뛰기 ▸</button><button id="hospitalRestart" class="textbtn">옥상 방어 다시 시작</button><button id="hospitalHome" class="textbtn">타이틀로 돌아가기</button></div></section>
 <section id="hospitalResult" class="dialog hospital-result hidden"><div class="card compact"><span id="hospitalResultTag" class="eyebrow">STAGE 02 CLEAR</span><h2 id="hospitalResultTitle">병원을 지켜냈다.</h2><p id="hospitalResultInfo"></p><button id="hospitalNext" class="primary">다음 스테이지 ▸</button><button id="hospitalAgain" class="textbtn">옥상 방어 다시 도전</button><button id="hospitalResultHome" class="textbtn">타이틀로 돌아가기</button></div></section>
 
+<section id="dispatchScene" class="hospital-intro hidden" aria-label="학교 옥상 추가 임무 컷신"><div class="hospital-cinema top"></div><div class="hospital-cinema bottom"></div><div class="hospital-cut-title">다비 고등학교 · 옥상</div><button id="skipDispatch">건너뛰기 ▸</button><div id="dispatchCaption" class="hospital-caption hidden"><span id="dispatchSpeaker" class="speaker-alpha">Alpha</span><span id="dispatchLine"></span></div><div id="dispatchFade"></div></section>
 <script>var updateLoader=document.createElement("script");updateLoader.src="updater.js?_boot="+Date.now();document.body.appendChild(updateLoader);</script></body></html>
 
