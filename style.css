@@ -32,3 +32,5 @@
 #landingSpeaker{font-weight:700}#landingSpeaker.speaker-alpha{color:#78b8ff}#landingSpeaker.speaker-agent{color:#ffda75}
 
 #updateStatus{position:fixed;z-index:40;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:85vw;padding:9px 14px;background:#101c29f2;border:1px solid #c9b49066;color:#eadbbd;font-size:11px;text-align:center;pointer-events:none;border-radius:3px;box-shadow:0 3px 18px #0005}#updateStatus[hidden]{display:none}
+
+#landingLine .school-alert{color:#ff6962;font-weight:700;text-shadow:0 1px 4px #000,0 0 12px #e8392926}
