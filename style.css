@@ -89,3 +89,5 @@
 
 /* Shared cinematic skip control, including news and all helicopter scenes. */
 #skipLanding,#skipNews,#hospitalSkipIntro,#skipDispatch,#skipHospitalOutro{position:fixed;top:auto;left:auto;right:max(24px,env(safe-area-inset-right));bottom:max(20px,3vh,env(safe-area-inset-bottom));z-index:30;pointer-events:auto;touch-action:manipulation;box-sizing:border-box;min-height:44px;padding:10px 16px;border:1px solid #e3e9dc66;border-radius:2px;background:#111b22dd;color:#e5eee2;font-family:inherit;font-size:12px;letter-spacing:.3px;white-space:nowrap}
+
+.sprinting #crosshair,.sprinting .hospital-reticle{opacity:0}.sprinting #fire,.sprinting #hospitalFire{opacity:.4}
