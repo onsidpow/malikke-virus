@@ -69,3 +69,5 @@
 .ride-arrival{background:none;text-align:center}.ride-arrival>div{opacity:0}.ride-arrival span{font:11px monospace;letter-spacing:4px;color:#dfbf94}.ride-arrival h2{letter-spacing:7px}.ride-arrival p{letter-spacing:2px}#nextChapter{background:#000}
 
 @keyframes rideWind{from{transform:scale(.94)}to{transform:scale(1.15)}}#rideSpeedLines{animation:rideWind .2s linear infinite;transform-origin:50% 49%}
+
+#rideSpeedLines{background:repeating-conic-gradient(from 1deg at 50% 46%,transparent 0deg 7deg,#eef7edb3 7.05deg 7.3deg,transparent 7.4deg 15deg);mask-image:radial-gradient(ellipse at 50% 46%,transparent 35%,#000 94%);box-shadow:inset 0 0 110px #071522a6;backdrop-filter:blur(.6px);animation:rideRush .14s linear infinite;transform-origin:50% 46%}@keyframes rideRush{from{transform:scale(.98) rotate(var(--ride-bank,0deg))}to{transform:scale(1.3) rotate(var(--ride-bank,0deg))}}
