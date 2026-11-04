@@ -106,14 +106,14 @@ function openCampaign(){goHome();$('campaign').classList.remove('hidden')}
 function pause(){if(state!=='play')return;state='pause';firing=false;keys={};resetJoystick();document.exitPointerLock?.();$('pauseMenu').classList.remove('hidden')}
 function resume(){state='play';$('pauseMenu').classList.add('hidden');$('stairs').classList.add('hidden');$('schoolMap').classList.add('hidden')}
 const LANDING_SCRIPT=[
-{until:4.2,text:'Alpha : 감염되면 사람들이 좀비로 변하는 바이러스가 다비 고등학교에 퍼졌어.'},
-{until:6.6,text:'Alpha : 선생님과 학생들이 체육관에 대피해 있다.'},
-{until:9.4,text:'Alpha : 학교의 좀비를 모두 처치하고, 지하실 전원 스위치를 올려라.'},
-{until:12,text:'Alpha : 전원을 복구한 뒤 체육관에 진입해 생존자들을 구출하라.'},
-{until:13.8,text:'Alpha : 착륙 완료. 왼쪽 문으로 하차하라.'},
-{until:16,text:'Agent 28 : 알겠다'}
+{until:5.2,text:'Alpha : 감염되면 사람들이 좀비로 변하는 바이러스가 다비 고등학교에 퍼졌어.'},
+{until:8.6,text:'Alpha : 선생님과 학생들이 체육관에 대피해 있다.'},
+{until:12.4,text:'Alpha : 학교의 좀비를 모두 처치하고, 지하실 전원 스위치를 올려라.'},
+{until:16,text:'Alpha : 전원을 복구한 뒤 체육관에 진입해 생존자들을 구출하라.'},
+{until:18.8,text:'Alpha : 착륙 완료. 왼쪽 문으로 하차하라.'},
+{until:21,text:'Agent 28 : 알겠다'}
 ];
-const LANDING_DURATION=16;
+const LANDING_DURATION=21;
 let introTime=0,missionShown=false,missionStage=-1,missionTimer=0;
 function landingOffset(){if(state!=='intro')return{x:0,y:0,z:0};let u=Math.min(1,introTime/6.5),e=u*u*(3-2*u);return{x:9*(1-e),y:14*(1-e),z:16*(1-e)}}
 function sceneCamera(){if(state==='intro'){let u=Math.min(1,introTime/6.5),e=u*u*(3-2*u),o=landingOffset(),eye=[42-10*e,24-7*e,43-12*e],target=[22+o.x,14.0+o.y,22+o.z],dx=target[0]-eye[0],dz=target[2]-eye[2];return{eye,a:Math.atan2(dz,dx),pitch:Math.atan2(target[1]-eye[1],Math.hypot(dx,dz))}}if(state==='menu')return{eye:[28,15,28],a:-Math.PI/2+Math.sin(performance.now()*.00008)*.18,pitch:-.04};return{eye:[p.x,1.62+floor*4.2+(p.stairY||0)+Math.sin(walk*2)*.012,p.z],a:p.a,pitch:p.pitch}}
